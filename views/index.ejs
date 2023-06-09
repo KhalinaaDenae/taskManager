@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <style>
+    html {
+  background-color: #E4E9FD;
+  background-image: -webkit-linear-gradient(65deg, #354722de 50%, #d572229c 50%);
+  min-height: 1000px;
+  font-family: 'helvetica neue';
+}
+
+h1 {
+  color: #fff;
+  padding: 10px;
+}
+
+.box {
+  max-width: 400px;
+  height: auto;
+  margin: 50px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+#heading {
+  background-color:  #354722de;
+  text-align: center;
+}
+
+.item {
+ margin: 0 auto;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+p {
+  margin: 0;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 200;
+  color: #00204a;
+}
+
+form {
+  text-align: center;
+  margin-left: 20px;
+}
+.item-ctnr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-btn{
+  min-height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-color: transparent;
+  background-color:  #a89c199c;
+  color: #fff;
+  font-size: 30px;
+  padding-bottom: 6px;
+  border-width: 0;
+}
+
+input[type="text"] {
+  text-align: center;
+  height: 60px;
+  top: 10px;
+  border: none;
+  background-color: #d8caad;
+  font-size: 20px;
+  font-weight: 200;
+  width: 313px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: inset 0 -3px 0 0 #354722de ;
+}
+
+::placeholder {
+  color: grey;
+  opacity: 1;
+}
+
+footer {
+  color: white;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+.edit-btns,.delete-btn{
+  border: transparent;
+  background-color:#d8caad;
+  padding: 10px;
+  border-radius: 3px;
+}
+  </style>
+</head>
+<body>
+
+<div class="box" id="heading">
+  <h1>To-Do List</h1>
+</div>
+
+
+<div class="item-ctnr">
+  <ul>
+    <% for (let i = 0; i < tasks.length; i++) { %>
+      <li class="item">
+    
+        <%= tasks[i] %>
+      
+        <form action="/delete/<%= i %>" method="get">
+          <button type="submit" class="delete-btn">🗑 </button>
+        </form>
+        <form action="/edit/<%= i %>" method="get">
+          <button type="submit" class="edit-btns">Edit</button>
+        </form>
+    
+      </li>    
+    <% } %>
+  </ul>
+</div>
+
+
+
+  <form action="/" method="post">
+    <input type="text" id="task" name="task" placeholder="New Task" required>
+    <button type="submit" class="add-btn"> + </button>
+  </form>
+
+</body>
+</html>
